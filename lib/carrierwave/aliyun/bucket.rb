@@ -10,6 +10,7 @@ module CarrierWave
         @aliyun_area         = uploader.aliyun_area || 'cn-hangzhou'
         @aliyun_private_read = uploader.aliyun_private_read
         @aliyun_internal     = uploader.aliyun_internal
+        @aliyun_endpoint     = uploader.aliyun_endpoint
 
         # Host for get request
         @aliyun_host = uploader.aliyun_host || "https://#{@aliyun_bucket}.oss-#{@aliyun_area}.aliyuncs.com"
@@ -135,7 +136,7 @@ module CarrierWave
                else
                  "oss-#{@aliyun_area}.aliyuncs.com"
                end
-
+        host = @aliyun_endpoint if @aliyun_endpoint
         opts = {
           host: host,
           bucket: @aliyun_bucket
